@@ -11,6 +11,15 @@ public class Library {
         this.books = inventory;
     }
 
+    public Library() {
+        this("Library Name Not Provided", new ArrayList<>());
+    }
+
+    public Library(String libraryName) {
+        this(libraryName, new ArrayList<>());
+    }
+
+
     public void addBook(Book book) {
         books.add(book);
     }
@@ -18,28 +27,49 @@ public class Library {
         int index = 0;
         for (Book book : this.books) {
             if (book.getISBN().equals(ISBN)) {
-                break;
+                book.setStatus("Removed");
+                return books.remove(index);
             }
             index++;
         }
-        return books.remove(index);
+        return null;
     }
 
-    public Book searchBook(String keyword) {
-        int index = 0;
-        for (Book book : this.books) {
-            if (book.getTitle().contains(keyword) || book.getAuthor().contains(keyword)) {
-                break;
+    public void removeBook(Book book) {
+        books.remove(book);
+    }
+
+    public Book searchBookByKeyword(String keyword) {
+        int index;
+        for(index = 0; index < books.size(); index++) {
+            if (books.get(index).getTitle().toLowerCase().contains(keyword.toLowerCase()) || books.get(index).getAuthor().toLowerCase().contains(keyword.toLowerCase())) {
+                books.get(index).displayInfo();
+                return books.get(index);
             }
-            index++;
         }
-        return books.get(index);
+        System.out.println("Book not found.");
+        return null;
     }
 
-    public void displayALlBooks() {
+    public void displayAllBooks() {
         for (Book book : books) {
             System.out.println(book);
         }
     }
 
+    public String getLibraryName() {
+        return libraryName;
+    }
+
+    public void setLibraryName(String libraryName) {
+        this.libraryName = libraryName;
+    }
+
+    public ArrayList<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ArrayList<Book> books) {
+        this.books = books;
+    }
 }

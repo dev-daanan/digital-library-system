@@ -19,7 +19,11 @@ public class Book {
         System.out.println(this);
     }
     public void checkoutBook() {
-        this.status = "Checked Out";
+        if (status.equals("Available")) {
+            status = "Borrowed";
+        } else {
+            System.out.println("Book not available for checkout.");
+        }
     }
 
     public void returnBook() {
@@ -36,11 +40,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return  "title: '" + title + '\'' +
-                ", author: '" + author + '\'' +
+        return  "Title: '" + title + '\'' +
+                ", Author: '" + author + '\'' +
                 ", ISBN: '" + ISBN + '\'' +
-                ", genre: '" + genre + '\'' +
-                ", status: '" + status + '\'';
+                ", Genre: '" + genre + '\'' +
+                ", Status: '" + status + '\'';
     }
 
     public String getStatus() {
@@ -57,6 +61,10 @@ public class Book {
 
     public String getAuthor() {
         return author;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public void setAuthor(String author) {

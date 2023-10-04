@@ -10,4 +10,20 @@ public class Magazine extends Book {
         this.magazineName = magazineName;
         this.issueMonth = issueMonth;
     }
+
+    public String getMagazineName() {
+        return magazineName;
+    }
+
+    public void setMagazineName(String magazineName) {
+        this.magazineName = magazineName;
+    }
+
+    public String getIssueMonth() {
+        return issueMonth;
+    }
+
+    public void setIssueMonth(String issueMonth) {
+        this.issueMonth = issueMonth;
+    }
 }
