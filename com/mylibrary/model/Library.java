@@ -3,39 +3,43 @@ package com.mylibrary.model;
 import java.util.ArrayList;
 
 public class Library {
-    private ArrayList<Book> inventory;
+    private String libraryName;
+    private ArrayList<Book> books;
 
-    public void addBook(Book newBook, int booksAdded) {
-        if (inventory.contains(newBook)) {
-            int newBookIndex = inventory.indexOf(newBook);
-            Book newBookStack = inventory.get(newBookIndex);
-            newBookStack.setBooksOwned(newBookStack.getBooksOwned() + booksAdded);
-            newBookStack.setBooksAtLibrary(newBookStack.getBooksAtLibrary() + booksAdded);
-
-        }
-        inventory.add(newBook);
-    }
-    public void addBook(Book newBook) {
-        if (inventory.contains(newBook)) {
-            int newBookIndex = inventory.indexOf(newBook);
-            Book newBookStack = inventory.get(newBookIndex);
-            newBookStack.setBooksOwned(newBookStack.getBooksOwned() + 1);
-            newBookStack.setBooksAtLibrary(newBookStack.getBooksAtLibrary() + 1);
-
-        }
-        inventory.add(newBook);
+    public Library(String libraryName, ArrayList<Book> inventory) {
+        this.libraryName = libraryName;
+        this.books = inventory;
     }
 
-    public boolean borrowBook(Book bookToBorrow) {
-        int bookToBorrowIndex = inventory.indexOf(bookToBorrow);
-        if (bookToBorrowIndex < 0) return false;
+    public void addBook(Book book) {
+        books.add(book);
+    }
+    public Book removeBook(String ISBN) {
+        int index = 0;
+        for (Book book : this.books) {
+            if (book.getISBN().equals(ISBN)) {
+                break;
+            }
+            index++;
+        }
+        return books.remove(index);
+    }
 
-        Book libraryBook = inventory.get(bookToBorrowIndex);
-        int booksOwned = libraryBook.getBooksOwned();
-        int booksAtLibrary = libraryBook.getBooksAtLibrary();
-        if (booksOwned < 1 || booksAtLibrary < 1) return false;
+    public Book searchBook(String keyword) {
+        int index = 0;
+        for (Book book : this.books) {
+            if (book.getTitle().contains(keyword) || book.getAuthor().contains(keyword)) {
+                break;
+            }
+            index++;
+        }
+        return books.get(index);
+    }
 
-        return true;
+    public void displayALlBooks() {
+        for (Book book : books) {
+            System.out.println(book);
+        }
     }
 
 }
