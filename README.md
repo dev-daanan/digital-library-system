@@ -4,5 +4,5 @@ Objective: Develop a system to manage books, magazines, and journals in a digita
 [/
     git add .
     git commit -m "Your commit message here"
-    git push origin master
+    git push origin main
 /]
