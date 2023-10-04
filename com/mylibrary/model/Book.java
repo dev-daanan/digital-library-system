@@ -2,66 +2,44 @@ package com.mylibrary.model;
 
 public class Book {
     private String title;
-    private String summary;
-    private String[] authors;
-    private int ISBN;
-    private int booksOwned;
-    private int booksAtLibrary;
+    private String author;
+    private String ISBN;
+    private String genre;
+    private String status;
 
-    public Book(String title, String summary, String[] authors, int ISBN, int booksOwned, int booksAtLibrary) {
+    public Book(String title, String author, String ISBN, String genre, String status) {
         this.title = title;
-        this.summary = summary;
-        this.authors = authors;
+        this.author = author;
         this.ISBN = ISBN;
-        this.booksOwned = booksOwned;
-        this.booksAtLibrary = booksAtLibrary;
+        this.genre = genre;
+        this.status = status;
     }
 
-    public String getTitle() {
-        return title;
+    public void displayInfo() {
+        System.out.println(this);
+    }
+    public void checkoutBook() {
+        this.status = "Checked Out";
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void returnBook() {
+        this.status = "Available";
     }
 
-    public String getSummary() {
-        return summary;
+    public void reserved() {
+        this.status = "Reserved";
     }
 
-    public void setSummary(String summary) {
-        this.summary = summary;
+    public void unReserve() {
+        this.status = "Available";
     }
 
-    public String[] getAuthors() {
-        return authors;
-    }
-
-    public void setAuthors(String[] authors) {
-        this.authors = authors;
-    }
-
-    public int getISBN() {
-        return ISBN;
-    }
-
-    public void setISBN(int ISBN) {
-        this.ISBN = ISBN;
-    }
-
-    public int getBooksOwned() {
-        return booksOwned;
-    }
-
-    public void setBooksOwned(int booksOwned) {
-        this.booksOwned = booksOwned;
-    }
-
-    public int getBooksAtLibrary() {
-        return booksAtLibrary;
-    }
-
-    public void setBooksAtLibrary(int booksAtLibrary) {
-        this.booksAtLibrary = booksAtLibrary;
+    @Override
+    public String toString() {
+        return  "title: '" + title + '\'' +
+                ", author: '" + author + '\'' +
+                ", ISBN: '" + ISBN + '\'' +
+                ", genre: '" + genre + '\'' +
+                ", status: '" + status + '\'';
     }
 }
